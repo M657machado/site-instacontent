@@ -11,26 +11,36 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--ink); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; }
   
-  .hero { text-align: center; max-width: 800px; margin-bottom: 60px; }
-  .hero h1 { font-family: 'Fraunces', serif; font-size: 56px; color: var(--ink); margin-bottom: 16px; letter-spacing: -1px; }
+  .hero { text-align: center; max-width: 800px; margin-bottom: 50px; }
+  .hero h1 { font-family: 'Fraunces', serif; font-size: 52px; color: var(--ink); margin-bottom: 16px; letter-spacing: -1px; }
   .hero p { font-size: 18px; color: #555; opacity: 0.8; }
   
-  grid-template-columns: repeat(3, 1fr); 30px; max-width: 1000px; width: 100%; }
-  .card { background: var(--white); border-radius: 24px; padding: 40px; border: 1px solid var(--line); text-decoration: none; color: var(--ink); transition: all 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: flex-start; }
-  .card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: var(--champagne); }
+  /* Grid ajustado para 3 colunas */
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; width: 100%; }
+  
+  .card { background: var(--white); border-radius: 24px; padding: 32px 24px; border: 1px solid var(--line); text-decoration: none; color: var(--ink); transition: all 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: flex-start; }
+  .card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
   
   .card.beleza { background: linear-gradient(135deg, #fff, #fdf0f0); }
+  .card.beleza:hover { border-color: #b87c7c; }
   .card.imob { background: linear-gradient(135deg, #fff, #f0f4fa); }
+  .card.imob:hover { border-color: #1a2f4a; }
+  .card.rest { background: linear-gradient(135deg, #fff, #fcf0f2); }
+  .card.rest:hover { border-color: #7a1f2b; }
   
-  .icon { font-size: 48px; margin-bottom: 20px; }
-  .card h2 { font-family: 'Fraunces', serif; font-size: 32px; margin-bottom: 12px; }
-  .card p { font-size: 16px; color: #666; line-height: 1.6; margin-bottom: 30px; flex-grow: 1; }
+  .icon { font-size: 40px; margin-bottom: 16px; }
+  .card h2 { font-family: 'Fraunces', serif; font-size: 24px; margin-bottom: 10px; line-height: 1.2; }
+  .card p { font-size: 14px; color: #666; line-height: 1.5; margin-bottom: 24px; flex-grow: 1; }
   
-  .btn { display: inline-block; padding: 14px 28px; border-radius: 100px; font-weight: 700; text-align: center; width: 100%; }
+  .btn { display: inline-block; padding: 12px 20px; border-radius: 100px; font-weight: 700; font-size: 13px; text-align: center; width: 100%; }
   .btn-beleza { background: #b87c7c; color: white; }
   .btn-imob { background: #1a2f4a; color: white; }
+  .btn-rest { background: #7a1f2b; color: white; }
 
-  @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .hero h1 { font-size: 36px; } }
+  @media (max-width: 900px) { 
+    .grid { grid-template-columns: 1fr; } 
+    .hero h1 { font-size: 36px; } 
+  }
 </style>
 </head>
 <body>
@@ -40,11 +50,28 @@
   <p>Escolha o seu mercado e comece a criar artes que realmente geram clientes.</p>
 </div>
 
+<div class="grid">
+  <a href="beleza.html" class="card beleza">
+    <div class="icon">💅</div>
+    <h2>Estética & Salões</h2>
+    <p>Sua agenda cheia começa no feed. Crie posts elegantes para destacar seus procedimentos.</p>
+    <span class="btn btn-beleza">Ver Planos →</span>
+  </a>
+
+  <a href="imobiliaria.html" class="card imob">
+    <div class="icon">🔑</div>
+    <h2>Imobiliárias</h2>
+    <p>Pare de receber curtida de colega. Crie artes com gancho de dor e CTA para gerar Directs.</p>
+    <span class="btn btn-imob">Ver Planos →</span>
+  </a>
+
   <a href="restaurante.html" class="card rest">
     <div class="icon">🍽️</div>
     <h2>Restaurantes</h2>
-    <p>Seu prato merece post que gera pedido. Crie cardápios visuais e promoções para encher o salão e o delivery.</p>
-    <span class="btn" style="background: #7a1f2b; color: white;">Ver Planos de Restaurante →</span>
+    <p>Seu prato merece post que gera pedido. Crie cardápios visuais e promoções.</p>
+    <span class="btn btn-rest">Ver Planos →</span>
   </a>
+</div>
+
 </body>
 </html>
