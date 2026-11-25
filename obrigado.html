@@ -37,14 +37,12 @@
   const nicho = params.get('nicho') || 'beleza'; // Se não vier nada, assume beleza
   
   // Mapeia qual app abrir dependendo do nicho
-  const apps = {
-    'beleza': 'app-beleza.html', // 'app-beleza.html', 
-    'imobiliaria': 'beleza.html', // Troque para o app de imobiliária depois
-    'restaurante': 'beleza.html' // Troque para o app de restaurante depois
+   const apps = {
+    'beleza': 'app-beleza.html',
+    'imobiliaria': 'app-imobiliario.html',
+    'restaurante': 'app-beleza.html' // (temporário)
   };
-  
-  document.getElementById('btnAcessar').href = apps[nicho] || 'beleza.html';
+    document.getElementById('btnAcessar').href = apps[nicho] || 'beleza.html';
 </script>
-
 </body>
 </html>
