@@ -15,7 +15,7 @@
   .hero h1 { font-family: 'Fraunces', serif; font-size: 56px; color: var(--ink); margin-bottom: 16px; letter-spacing: -1px; }
   .hero p { font-size: 18px; color: #555; opacity: 0.8; }
   
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 1000px; width: 100%; }
+  grid-template-columns: repeat(3, 1fr); 30px; max-width: 1000px; width: 100%; }
   .card { background: var(--white); border-radius: 24px; padding: 40px; border: 1px solid var(--line); text-decoration: none; color: var(--ink); transition: all 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: flex-start; }
   .card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: var(--champagne); }
   
@@ -40,21 +40,11 @@
   <p>Escolha o seu mercado e comece a criar artes que realmente geram clientes.</p>
 </div>
 
-<div class="grid">
-  <a href="beleza.html" class="card beleza">
-    <div class="icon">💅</div>
-    <h2>Estética & Salões</h2>
-    <p>Sua agenda cheia começa no feed. Crie posts elegantes para destacar seus procedimentos e preencher os horários vagos.</p>
-    <span class="btn btn-beleza">Ver Planos da Beleza →</span>
+  <a href="restaurante.html" class="card rest">
+    <div class="icon">🍽️</div>
+    <h2>Restaurantes</h2>
+    <p>Seu prato merece post que gera pedido. Crie cardápios visuais e promoções para encher o salão e o delivery.</p>
+    <span class="btn" style="background: #7a1f2b; color: white;">Ver Planos de Restaurante →</span>
   </a>
-
-  <a href="imobiliaria.html" class="card imob">
-    <div class="icon">🔑</div>
-    <h2>Imobiliárias</h2>
-    <p>Pare de receber curtida de colega. Crie artes com gancho de dor e CTA para gerar Directs qualificados para os seus imóveis.</p>
-    <span class="btn btn-imob">Ver Planos Imobiliários →</span>
-  </a>
-</div>
-
 </body>
 </html>
