@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InstaContent Imóveis — Posts que geram Direct</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #0f1e1a; --navy: #1a2f4a; --navy-deep: #0d1a2b; --champagne: #c9a961; --cream: #faf7f0; --white: #ffffff; --line: #e6e0d1; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--ink); }
+  
+  .nav { padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; position: absolute; top: 0; width: 100%; z-index: 10; }
+  .nav-logo { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 700; color: var(--white); }
+  .nav-cta { padding: 10px 20px; background: var(--champagne); color: var(--ink); border: none; border-radius: 100px; font-weight: 700; cursor: pointer; }
+  
+  .hero { background: linear-gradient(135deg, var(--navy-deep), var(--navy)); padding: 140px 40px 100px; color: var(--white); text-align: center; }
+  .hero h1 { font-family: 'Fraunces', serif; font-size: 52px; margin-bottom: 20px; line-height: 1.1; }
+  .hero p { font-size: 18px; opacity: 0.9; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
+  .hero-cta { padding: 18px 40px; background: var(--champagne); color: var(--ink); border: none; border-radius: 100px; font-size: 18px; font-weight: 800; cursor: pointer; }
+  
+  .pricing { padding: 80px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
+  .pricing h2 { font-family: 'Fraunces', serif; font-size: 36px; margin-bottom: 40px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  .card { background: var(--white); padding: 40px 30px; border-radius: 20px; border: 2px solid var(--line); text-align: left; }
+  .card.featured { border-color: var(--champagne); background: linear-gradient(135deg, #fff, #fdf8ed); position: relative; }
+  .card h3 { font-size: 22px; margin-bottom: 10px; }
+  .price { font-size: 48px; font-weight: 800; margin-bottom: 20px; }
+  .price span { font-size: 16px; font-weight: 500; color: #666; }
+  .btn-buy { width: 100%; padding: 16px; border-radius: 12px; border: none; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 20px; }
+  .btn-buy.primary { background: var(--navy); color: var(--white); }
+  .btn-buy.outline { background: transparent; border: 2px solid var(--navy); color: var(--navy); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">InstaContent Imóveis</div>
+  <button class="nav-cta" onclick="document.getElementById('precos').scrollIntoView({behavior:'smooth'})">Ver Planos</button>
+</nav>
+
+<header class="hero">
+  <h1>Seu imóvel merece<br>post que gera Direct.</h1>
+  <p>Pare de receber curtida de colega. Gere artes com gancho de dor, benefício e CTA que faz o comprador te chamar no direct — em 30 segundos.</p>
+  <button class="hero-cta" onclick="document.getElementById('precos').scrollIntoView({behavior:'smooth'})">Começar agora →</button>
+</header>
+
+<section class="pricing" id="precos">
+  <h2>Escolha o plano ideal</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Acesso Mensal</h3>
+      <div class="price">R$ 67<span>/mês</span></div>
+      <p style="color:#666; font-size:14px;">Teste e sinta a diferença no seu feed.</p>
+      <button class="btn-buy outline" onclick="iniciarCheckout('mensal', 'imobiliaria')">Assinar Mensal</button>
+    </div>
+    <div class="card featured">
+      <h3>Acesso Vitalício</h3>
+      <div class="price">R$ 247<span> único</span></div>
+      <p style="color:#666; font-size:14px;">Pague uma vez. Use para sempre.</p>
+      <button class="btn-buy primary" onclick="iniciarCheckout('vitalicio', 'imobiliaria')">Garantir Vitalício →</button>
+    </div>
+  </div>
+</section>
+
+<script>
+async function iniciarCheckout(plano, nicho) {
+  const botoes = document.querySelectorAll('.btn-buy');
+  botoes.forEach(b => b.disabled = true);
+
+  try {
+    // ⚠️ AQUI ESTÁ A URL DO SEU SERVIDOR NO RENDER
+    const response = await fetch('https://instacontent-backend.onrender.com/criar-pagamento', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ plano, nicho })
+    });
+
+    const data = await response.json();
+    if (data.init_point) {
+      window.location.href = data.init_point;
+    } else {
+      alert('Erro ao gerar pagamento. Tente novamente.');
+      botoes.forEach(b => b.disabled = false);
+    }
+  } catch (error) {
+    alert('Erro de conexão com o servidor.');
+    botoes.forEach(b => b.disabled = false);
+  }
+}
+</script>
+</body>
+</html>
