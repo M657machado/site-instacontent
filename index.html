@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InstaContent Beleza</title>
+<style>
+  body { font-family: sans-serif; background: #faf7f0; text-align: center; padding: 50px; }
+  .card { background: white; padding: 40px; border-radius: 20px; max-width: 400px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+  h1 { color: #1e6b52; }
+  button { background: #1e6b52; color: white; padding: 15px 30px; border: none; border-radius: 10px; font-size: 18px; cursor: pointer; margin-top: 20px; width: 100%; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>InstaContent Beleza</h1>
+  <p>Teste de Integração do Mercado Pago</p>
+  <button onclick="comprar()">Comprar Vitalício (R$ 197)</button>
+</div>
+
+<script>
+async function comprar() {
+  try {
+    const res = await fetch('https://instacontent-backend.onrender.com/criar-pagamento', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ plano: 'vitalicio', nicho: 'beleza' })
+    });
+    const data = await res.json();
+    if (data.init_point) {
+      window.location.href = data.init_point;
+    } else {
+      alert('Erro no servidor. Verifique o terminal.');
+    }
+  } catch (e) {
+    alert('Erro de conexão. O Node.js está rodando?');
+  }
+}
+</script>
+</body>
+</html>

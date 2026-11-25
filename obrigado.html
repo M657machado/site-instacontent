@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pagamento Aprovado — InstaContent Pro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #0f1e1a; --emerald: #1e6b52; --emerald-deep: #0f4a38; --champagne: #c9a961; --champagne-light: #f1e6cd; --cream: #faf7f0; --line: #e6e0d1; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--ink); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+  .card { background: white; padding: 50px 40px; border-radius: 24px; max-width: 500px; width: 100%; text-align: center; box-shadow: 0 20px 60px rgba(15,30,26,0.1); border: 1px solid var(--line); }
+  .icon { width: 80px; height: 80px; border-radius: 50%; background: var(--emerald); color: var(--champagne); display: flex; align-items: center; justify-content: center; font-size: 40px; margin: 0 auto 24px; box-shadow: 0 10px 30px rgba(30,107,82,0.3); }
+  h1 { font-family: 'Fraunces', serif; font-size: 32px; margin-bottom: 16px; color: var(--ink); }
+  p { font-size: 16px; color: #555; margin-bottom: 30px; line-height: 1.6; }
+  .btn { display: inline-block; width: 100%; padding: 18px; background: var(--ink); color: var(--champagne-light); text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 16px; transition: all 0.3s; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(15,30,26,0.3); }
+  .email-note { font-size: 13px; color: #888; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="icon">✓</div>
+  <h1>Pagamento Aprovado!</h1>
+  <p>Bem-vindo(a) ao InstaContent Pro. Seu acesso já está liberado. Clique no botão abaixo para começar a criar suas artes.</p>
+  
+  <a href="#" id="btnAcessar" class="btn">Acessar o App Agora →</a>
+  
+  <p class="email-note">Enviamos também uma cópia deste link para o seu e-mail. Se tiver dúvidas, fale com o suporte.</p>
+</div>
+
+<script>
+  // Pega o nicho na URL (ex: obrigado.html?nicho=beleza)
+  const params = new URLSearchParams(window.location.search);
+  const nicho = params.get('nicho') || 'beleza'; // Se não vier nada, assume beleza
+  
+  // Mapeia qual app abrir dependendo do nicho
+  const apps = {
+    'beleza': 'app-beleza.html', // 'app-beleza.html', 
+    'imobiliaria': 'beleza.html', // Troque para o app de imobiliária depois
+    'restaurante': 'beleza.html' // Troque para o app de restaurante depois
+  };
+  
+  document.getElementById('btnAcessar').href = apps[nicho] || 'beleza.html';
+</script>
+
+</body>
+</html>
